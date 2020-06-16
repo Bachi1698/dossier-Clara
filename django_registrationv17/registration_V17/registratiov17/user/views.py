@@ -1,7 +1,15 @@
 from django.shortcuts import render,redirect
+from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.models import User
 from django.core.validators import validate_email
 from django.contrib.auth import authenticate,login,logout
+from django.shortcuts import render, redirect
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.template.loader import render_to_string
+from . import token as token_
+from django.utils.encoding import force_text
+from django.utils.http import urlsafe_base64_decode
 
 # Create your views here.
 def inscription(request):
@@ -40,13 +48,23 @@ def inscription(request):
                             first_name=first_name,
                             last_name=last_name,
                             username=username,
-                            email=email
+                            email=email,
+                            is_active = False
                         )
                         user.save() 
                         user.password = passe
                         user.set_password(user.password)
                         user.save()
-                        message = " l'enregistrement a été effectué avec succes"
+                        current_site = get_current_site(request)
+                        subject = 'Activate Your MySite Account'
+                        message = render_to_string('account_activation_email.html', {
+                            'user': user,
+                            'domain': current_site.domain,
+                            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                            'token': token_.account_activation_token.make_token(user),
+                        })
+                        user.email_user(subject, message)
+                        message = " merci de vérifier votre email pour la confirmation de votre compte"
                         try:
                             us = authenticate(username=username, password=passe)
                             if us.is_active:
@@ -92,3 +110,20 @@ def index(request):
 def is_deconnexion(request):
     logout(request)
     return redirect('login')
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and token_.account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.profile.email_confirmed = True
+        user.save()
+        login(request, user)
+        return redirect('index')
+    else:
+        return render(request, 'inscription.html')
