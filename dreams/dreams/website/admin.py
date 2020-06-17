@@ -24,7 +24,7 @@ class AboutAdmin(CustomAddmin):
     search_fields = ('nom',)    
     ordering = ['nom']    
     fieldsets = [
-                  ("info about",{"fields":["nom","image"]}),
+                  ("info about",{"fields":["nom","image","description"]}),
                   ("standard",{"fields":["status"]})
     ]
 
@@ -72,6 +72,16 @@ class NewsletterAdmin(CustomAddmin):
                   ("standard",{"fields":["status"]})
     ]
 
+class ServiceAdmin(CustomAddmin):
+    list_display = ('service','date_add','date_update','status')   
+    search_fields = ('service',)    
+    ordering = ['service']    
+    fieldsets = [
+                  ("info service",{"fields":["service","description",]}),
+                  ("standard",{"fields":["status"]})
+    ]
+
+
 def _register(model,admin_class):
     admin.site.register(model,admin_class)
 
@@ -80,6 +90,7 @@ _register(models.Contact,ContactAdmin)
 _register(models.SiteInfo,SiteInfoAdmin)
 _register(models.SocialCount,SocialCountAdmin)
 _register(models.Newsletter,NewsletterAdmin)
+_register(models.Service,ServiceAdmin)
 
 
 

@@ -19,6 +19,15 @@ class CustomAddmin(admin.ModelAdmin):
         self.message_user(request,'la selection a été effectué avec succes')
     desactivate.short_description = "permet de desactiver le champs selectionner"
 
+
+class TypeAdmin(CustomAddmin):
+    list_display = ('types','date_add','date_update','status')   
+    search_fields = ('types',)    
+    ordering = ['types']    
+    fieldsets = [
+                  ("info types",{"fields":["types"]}),
+                  ("standard",{"fields":["status"]})
+    ]
 class ProjectAdmin(CustomAddmin):
     list_display = ('titre','types','date_add','date_update','status','image_view')   
     search_fields = ('titre',)    
@@ -41,8 +50,10 @@ class AppartementAdmin(CustomAddmin):
     def image_view(self,obj):
         return mark_safe("<img src='{url}' width='100px',height='50px'>".format(url=obj.image.url))
 
+
 def _register(model,admin_class):
     admin.site.register(model,admin_class)
 
 _register(models.Project,ProjectAdmin)
 _register(models.Appartement,AppartementAdmin)
+_register(models.Type,TypeAdmin)

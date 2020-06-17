@@ -6,3 +6,9 @@ def appartement(request):
 
     }
     return render(request,"pages/Apartment.html",datas)
+
+def project(request):
+    datas = {
+
+    }
+    return render(request,"pages/project.html",datas)

@@ -1,14 +1,22 @@
 from django.db import models
 
 # Create your models here.
+class Type(models.Model):
+    types = models.CharField(max_length=255)
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_update= models.DateTimeField(auto_now=True)
+    status = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'type'
+        verbose_name_plural = 'types'
+
+    def __str__(self):
+        return self.types
+
 class Project(models.Model):
-    TYPE =[
-        ('interior','interior'),
-        ('exterior','exterior'),
-        ('landing','landing'),
-    ]
     image = models.ImageField(upload_to="images/project")
-    types = models.CharField(choices=TYPE, max_length=255)
+    types = models.ForeignKey(Type,on_delete=models.CASCADE,related_name="project_types")
     titre = models.CharField(max_length=255)
     date_add = models.DateTimeField(auto_now_add=True)
     date_update= models.DateTimeField(auto_now=True)
@@ -38,3 +46,4 @@ class Appartement(models.Model):
 
     def __str__(self):
         return self.lieu
+

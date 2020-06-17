@@ -26,6 +26,7 @@
          </div>
       </div>
       <div class="row">
+         {% for a in about %}
          <div class="col-lg-6 col-md-6">
             <div class="about_img">
                <img src="{% static 'img/about.png' %}" alt="">
@@ -33,11 +34,8 @@
          </div>
          <div class="offset-lg-1 col-lg-5 col-sm-8 col-md-6">
             <div class="about_text">
-               <h2>Hello City We are
-                  leader in <span>proparties.</span></h2>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed ips
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua isuspendisse
-                  ultrices gravida. Risus. </p>
+               <h2>{{a.nom}}</h2>
+               <p>{{a.description}} </p>
                <a href="#" class="btn_1">learn More</a>
                <div class="about_part_counter">
                   <div class="single_counter">
@@ -56,6 +54,8 @@
             </div>
          </div>
       </div>
+      {% endfor %}
+   </div>
    </div>
 </section>
 <!--::team part end::-->

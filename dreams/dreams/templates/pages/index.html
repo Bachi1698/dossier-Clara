@@ -31,18 +31,16 @@
          </div>
       </div>
       <div class="row">
+         {% for a in about %}
          <div class="col-lg-6 col-md-6">
             <div class="about_img">
-               <img src="{% static 'img/about.png' %}" alt="">
+               <img src="{{a.image.url}}" alt="">
             </div>
          </div>
          <div class="offset-lg-1 col-lg-5 col-sm-8 col-md-6">
             <div class="about_text">
-               <h2>Hello City We are
-                  leader in <span>proparties.</span></h2>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed ips
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua isuspendisse
-                  ultrices gravida. Risus. </p>
+               <h2>{{a.nom}}</h2>
+               <p>{{a.description}} </p>
                <a href="#" class="btn_1">learn More</a>
                <div class="about_part_counter">
                   <div class="single_counter">
@@ -60,6 +58,7 @@
                </div>
             </div>
          </div>
+         {% endfor %}
       </div>
    </div>
 </section>
@@ -77,40 +76,51 @@
                <h2>Hello City We are <br>
                   leader in <span>Projects .</span></h2>
                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  {% for t in types %}
+                  {% if forloop.counter == 1 %}
                   <li>
                      <a class="active" id="Architecture-tab" data-toggle="tab" href="#Architecture" role="tab"
                         aria-controls="Architecture" aria-selected="true">
-                        Architecture
+                        {{t.types}}
                      </a>
                   </li>
+                  {% elif forloop.counter == 2 %}
                   <li>
                      <a id="Interior-tab" data-toggle="tab" href="#Interior" role="tab" aria-controls="Interior"
                         aria-selected="false">
-                        Interior
+                        {{t.types}}
                      </a>
                   </li>
+                  {% elif forloop.counter == 3 %}
                   <li>
                      <a id="Exterior-tab" data-toggle="tab" href="#Exterior" role="tab" aria-controls="Exterior"
                         aria-selected="false">
-                        Exterior
+                        {{t.types}}
                      </a>
                   </li>
+                  {% else%}
                   <li>
                      <a id="Landing-tab" data-toggle="tab" href="#Landing" role="tab" aria-controls="Landing"
                         aria-selected="false">
-                        Drafting Landing
+                        {{t.types}}
                      </a>
                   </li>
+                  {% endif %}
+                  {% endfor%}
                </ul>
             </div>
             <div class="portfolio_item tab-content" id="myTabContent">
+               {% for t in types %}
+               {% if forloop.counter == 1 %}
                <div class="row align-items-center justify-content-between tab-pane fade show active" id="Architecture"
                   role="tabpanel" aria-labelledby="Architecture-tab">
+                  {% for i in t.project_types.all %}
+                  {% if forloop.counter == 1 %}
                   <div class="col-lg-6 col-sm-12 col-md-6">
                      <div class="portfolio_box">
-                        <a href="{% static 'img/project-1.png' %}" class="img-gal">
+                        <a href="{{i.image.url}}" class="img-gal">
                            <div class="single_portfolio">
-                              <img class="img-fluid w-100" src="{% static 'img/project-1.png' %}" alt="">
+                              <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
                            </div>
                         </a>
                         <div class="short_info">
@@ -120,13 +130,14 @@
                         </div>
                      </div>
                   </div>
+                  {% elif forloop.counter == 2 %}
                   <div class="col-lg-5 col-md-6">
                      <div class="row">
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{% static 'img/project-2.png' %}" class="img-gal">
+                              <a href="{{i.image.url}}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{% static 'img/project-2.png' %}" alt="">
+                                    <img class="img-fluid w-100" src="{{i.image.url}}}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
@@ -136,11 +147,12 @@
                               </div>
                            </div>
                         </div>
+                        {% else %}
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{% static 'img/project-3.png' %}" class="img-gal">
+                              <a href="{{i.image.url}}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{% static 'img/project-3.png' %}" alt="">
+                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
@@ -152,14 +164,19 @@
                         </div>
                      </div>
                   </div>
+                  {% endif %}
+                  {% endfor %}
                </div>
+               {% elif forloop.counter == 2 %}
                <div class="row align-items-center justify-content-between tab-pane fade" id="Interior" role="tabpanel"
                   aria-labelledby="Interior-tab">
+                  {% for i in t.project_types.all %}
+                  {% if forloop.counter == 1 %}
                   <div class="col-lg-6 col-sm-12 col-md-6">
                      <div class="portfolio_box">
-                        <a href="{% static 'img/project-2.png' %}" class="img-gal">
+                        <a href="{{i.image.url}}" class="img-gal">
                            <div class="single_portfolio">
-                              <img class="img-fluid w-100" src="{% static 'img/project-2.png' %}" alt="">
+                              <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
                            </div>
                         </a>
                         <div class="short_info">
@@ -169,13 +186,14 @@
                         </div>
                      </div>
                   </div>
+                  {% elif forloop.counter == 2 %}
                   <div class="col-lg-5 col-md-6">
                      <div class="row">
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{% static 'img/project-1.png' %}" class="img-gal">
+                              <a href="{{i.image.url}}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{% static 'img/project-1.png' %}" alt="">
+                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
@@ -185,11 +203,12 @@
                               </div>
                            </div>
                         </div>
+                        {% else %}
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{% static 'img/project-3.png' %}" class="img-gal">
+                              <a href="{{i.image.url}}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{% static 'img/project-3.png' %}" alt="">
+                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
@@ -201,14 +220,19 @@
                         </div>
                      </div>
                   </div>
+                  {% endif %}
+                  {% endfor %}
                </div>
+               {% elif forloop.counter == 3 %}
                <div class="row align-items-center justify-content-between tab-pane fade" id="Exterior" role="tabpanel"
                   aria-labelledby="Exterior-tab">
+                  {% for i in t.project_types.all %}
+                  {% if forloop.counter == 1 %}
                   <div class="col-lg-6 col-sm-12 col-md-6">
                      <div class="portfolio_box">
-                        <a href="{% static 'img/project-3.png' %}" class="img-gal">
+                        <a href="{{i.image.url}}" class="img-gal">
                            <div class="single_portfolio">
-                              <img class="img-fluid w-100" src="{% static 'img/project-3.png' %}" alt="">
+                              <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
                            </div>
                         </a>
                         <div class="short_info">
@@ -218,13 +242,14 @@
                         </div>
                      </div>
                   </div>
+                  {% elif forloop.counter == 2 %}
                   <div class="col-lg-5 col-md-6">
                      <div class="row">
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{% static 'img/project-2.png' %}" class="img-gal">
+                              <a href="{{i.image.url}}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{% static 'img/project-2.png' %}" alt="">
+                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
@@ -234,11 +259,12 @@
                               </div>
                            </div>
                         </div>
+                        {% else %}
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{% static 'img/project-1.png' %}" class="img-gal">
+                              <a href="{{i.image.url}}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{% static 'img/project-1.png' %}" alt="">
+                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
@@ -250,14 +276,19 @@
                         </div>
                      </div>
                   </div>
+                  {% endif %}
+                  {% endfor %}
                </div>
+               {% elif forloop.counter == 4 %}
                <div class="row align-items-center justify-content-between tab-pane fade" id="Landing" role="tabpanel"
                   aria-labelledby="Landing-tab">
+                  {% for i in t.project_types.all %}
+                  {% if forloop.counter == 1 %}
                   <div class="col-lg-6 col-sm-12 col-md-6">
                      <div class="portfolio_box">
-                        <a href="{% static 'img/project-1.png' %}" class="img-gal">
+                        <a href="{{i.image.url}}" class="img-gal">
                            <div class="single_portfolio">
-                              <img class="img-fluid w-100" src="{% static 'img/project-1.png' %}" alt="">
+                              <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
                            </div>
                         </a>
                         <div class="short_info">
@@ -267,13 +298,14 @@
                         </div>
                      </div>
                   </div>
+                  {% elif forloop.counter == 2 %}
                   <div class="col-lg-5 col-md-6">
                      <div class="row">
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{% static 'img/project-4.png' %}" class="img-gal">
+                              <a href="{{i.image.url}}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{% static 'img/project-5.png' %}" alt="">
+                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
@@ -283,11 +315,12 @@
                               </div>
                            </div>
                         </div>
+                        {% else %}
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{% static 'img/project-3.png' %}" class="img-gal">
+                              <a href="{{i.image.url}}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{% static 'img/project-3.png' %}" alt="">
+                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
@@ -299,7 +332,11 @@
                         </div>
                      </div>
                   </div>
+                  {% endif %}
+                  {% endfor %}
                </div>
+               {% endif %}
+               {% endfor %}
             </div>
          </div>
       </div>

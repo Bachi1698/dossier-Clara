@@ -33,7 +33,7 @@ class Contact(models.Model):
         return self.name
 
 class SiteInfo(models.Model):
-    mapping = models.URLField(null=True)
+    mapping = models.TextField(null=True)
     banner = models.ImageField(upload_to="images/banner", null=True)
     logo = models.ImageField(upload_to='images/site')
     telephone = models.IntegerField()
@@ -83,3 +83,18 @@ class Newsletter(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class Service(models.Model):
+    service = models.CharField(max_length=255,null=True)
+    description = models.TextField(null=True)
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_update= models.DateTimeField(auto_now=True)
+    status = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'service'
+        verbose_name_plural = 'services'
+
+    def __str__(self):
+        return self.service

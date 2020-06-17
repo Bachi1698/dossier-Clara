@@ -6,3 +6,9 @@ def blog(request):
 
     }
     return render(request,"pages/blog.html",datas)
+
+def blog_single(request):
+    datas = {
+
+    }
+    return render(request,'pages/single-blog.html',datas)
