@@ -41,15 +41,18 @@ class ContactAdmin(CustomAddmin):
     ]
 
 class SiteInfoAdmin(CustomAddmin):
-    list_display = ('telephone','email','slogan','mapping','date_add','date_update','status','logo_view')   
+    list_display = ('telephone','email','slogan','mapping','date_add','date_update','status','logo_view','banner_view')   
     search_fields = ('email',)    
     ordering = ['email']    
     fieldsets = [
-                  ("info site info",{"fields":["email","telephone","slogan","logo","mapping"]}),
+                  ("info site info",{"fields":["email","telephone","slogan","logo","mapping","banner"]}),
                   ("standard",{"fields":["status"]})
     ]
     def logo_view(self,obj):
         return mark_safe("<img src='{url}' width='100px',height='50px'>".format(url=obj.logo.url))
+
+    def banner_view(self,obj):
+        return mark_safe("<img src='{url}' width='100px',height='50px'>".format(url=obj.banner.url))
 
 class SocialCountAdmin(CustomAddmin):
     list_display = ('reseau','lien','date_add','date_update','status',)   
@@ -60,6 +63,15 @@ class SocialCountAdmin(CustomAddmin):
                   ("standard",{"fields":["status"]})
     ]
 
+class NewsletterAdmin(CustomAddmin):
+    list_display = ('email','date_add','date_update','status',)   
+    search_fields = ('email',)    
+    ordering = ['email']    
+    fieldsets = [
+                  ("info newsletter",{"fields":["email"]}),
+                  ("standard",{"fields":["status"]})
+    ]
+
 def _register(model,admin_class):
     admin.site.register(model,admin_class)
 
@@ -67,6 +79,7 @@ _register(models.About,AboutAdmin)
 _register(models.Contact,ContactAdmin)
 _register(models.SiteInfo,SiteInfoAdmin)
 _register(models.SocialCount,SocialCountAdmin)
+_register(models.Newsletter,NewsletterAdmin)
 
 
 

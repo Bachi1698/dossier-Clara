@@ -5,7 +5,7 @@ class About(models.Model):
     nom = models.CharField(max_length=255)
     description = models.TextField()
     image = models.ImageField(upload_to='images/about')
-    date_add = models.DateTimeField(auto_now_add=True)
+    date_add = models.DateTimeField(auto_now_add=True) 
     date_update= models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True)
 
@@ -34,6 +34,7 @@ class Contact(models.Model):
 
 class SiteInfo(models.Model):
     mapping = models.URLField(null=True)
+    banner = models.ImageField(upload_to="images/banner", null=True)
     logo = models.ImageField(upload_to='images/site')
     telephone = models.IntegerField()
     email = models.EmailField()
@@ -69,3 +70,16 @@ class SocialCount(models.Model):
 
     def __str__(self):
         return self.reseau
+
+class Newsletter(models.Model):
+    email = models.EmailField(null=True)
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_update= models.DateTimeField(auto_now=True)
+    status = models.BooleanField(default=True)
+
+    class Meta: 
+        verbose_name = "Newsletter"
+        verbose_name_plural = "Newsletters"
+
+    def __str__(self):
+        return self.email

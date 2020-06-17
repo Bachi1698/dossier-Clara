@@ -2,10 +2,15 @@ from django.shortcuts import render
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
 from . import models
+from dreamsApp import models as models_dreamsApp
 # Create your views here.
 def home(request):
+    about = models.About.objects.filter(status=True)
+    site_info = models.SiteInfo.objects.filter(status=True)[:1].get()
+    project = models
     datas = {
-
+            "about":about, 
+            "site_info":site_info,          
     }
     return render(request,"pages/index.html",datas)
 
