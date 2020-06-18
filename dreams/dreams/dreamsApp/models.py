@@ -22,7 +22,7 @@ class Project(models.Model):
     date_update= models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True)
 
-    class Meta:
+    class Meta: 
         verbose_name = 'Poject'
         verbose_name_plural = 'Pojects'
 

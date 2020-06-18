@@ -1,5 +1,6 @@
 from django.contrib import admin
 from . import models 
+from django.utils.safestring import mark_safe
 
 # Register your models here.
 class CustomAddmin(admin.ModelAdmin):

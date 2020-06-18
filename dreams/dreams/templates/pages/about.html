@@ -69,67 +69,74 @@
                <h2><span>Luxuries</span> Apartment</h2>
             </div>
             <div class="grid">
+               {% for a in appartement%}
                <div class="grid-sizer"></div>
+               {% if forloop.counter == 1 %}
                <div class="grid-item big_weight">
                   <div class="project_img">
-                     <img src="{% static 'img/gallery/gallery_1.png' %}" alt="">
+                     <img src="{{a.image.url}}" alt="">
                      <div class="project_gallery_hover_text">
                         <p>Home Apartment</p>
-                        <h3>Detached House For Sale </h3>
+                        <h3><a href="apartment.html"> {{a.lieu}}For Sale</a></h3>
                         <ul>
-                           <li><a href=""><span class="flaticon-bath"></span></a> 04</li>
-                           <li><a href=""><span class="flaticon-bed"></span></a> 03</li>
-                           <li><a href=""><span class="flaticon-frame"></span></a> 2400 sqft</li>
+                           <li><a href=""><span class="flaticon-bath"></span></a> {{a.nombre_douche}}</li>
+                           <li><a href=""><span class="flaticon-bed"></span></a> {{a.garage}}</li>
+                           <li><a href=""><span class="flaticon-frame"></span></a> {{a.superficie}} m2</li>
                            <li><a href=""><span class="ti-heart"></span></a> like</li>
                         </ul>
                      </div>
                   </div>
                </div>
+               {% elif forloop.counter == 2 %}
                <div class="grid-item big_height">
                   <div class="project_img">
-                     <img src="{% static 'img/gallery/gallery_4.png' %}" alt="">
+                     <img src="{{a.image.url}}" alt="">
                      <div class="project_gallery_hover_text">
                         <p>Home Apartment</p>
-                        <h3>Detached House For Sale </h3>
+                        <h3><a href="apartment.html"> {{a.lieu}}For Sale</a></h3>
                         <ul>
-                           <li><a href=""><span class="flaticon-bath"></span></a> 04</li>
-                           <li><a href=""><span class="flaticon-bed"></span></a> 03</li>
-                           <li><a href=""><span class="flaticon-frame"></span></a> 2400 sqft</li>
+                           <li><a href=""><span class="flaticon-bath"></span></a> {{a.nombre_douche}}</li>
+                           <li><a href=""><span class="flaticon-bed"></span></a> {{a.garage}}</li>
+                           <li><a href=""><span class="flaticon-frame"></span></a> {{a.superficie}} m2</li>
                            <li><a href=""><span class="ti-heart"></span></a> like</li>
                         </ul>
                      </div>
                   </div>
                </div>
+               {% elif forloop.counter == 3 %}
                <div class="grid-item">
                   <div class="project_img">
-                     <img src="{% static 'img/gallery/gallery_2.png' %}" alt="">
+                     <img src="{{a.image.url}}" alt="">
                      <div class="project_gallery_hover_text">
                         <p>Home Apartment</p>
-                        <h3>Detached House For Sale </h3>
+                        <h3><a href="apartment.html"> {{a.lieu}} For Sale</a></h3>
                         <ul>
-                           <li><a href=""><span class="flaticon-bath"></span></a> 04</li>
-                           <li><a href=""><span class="flaticon-bed"></span></a> 03</li>
-                           <li><a href=""><span class="flaticon-frame"></span></a> 2400 sqft</li>
+                           <li><a href=""><span class="flaticon-bath"></span></a> {{a.nombre_douche}}</li>
+                           <li><a href=""><span class="flaticon-bed"></span></a> {{a.garage}}</li>
+                           <li><a href=""><span class="flaticon-frame"></span></a> {{a.superficie}} m2</li>
                            <li><a href=""><span class="ti-heart"></span></a> like</li>
                         </ul>
                      </div>
                   </div>
                </div>
+               {% else %}
                <div class="grid-item">
                   <div class="project_img">
-                     <img src="{% static 'img/gallery/gallery_3.png' %}" alt="">
+                     <img src="{{a.image.url}}" alt="">
                      <div class="project_gallery_hover_text">
                         <p>Home Apartment</p>
-                        <h3>Detached House For Sale </h3>
+                        <h3><a href="apartment.html"> {{a.lieu}} For Sale</a></h3>
                         <ul>
-                           <li><a href=""><span class="flaticon-bath"></span></a> 04</li>
-                           <li><a href=""><span class="flaticon-bed"></span></a> 03</li>
-                           <li><a href=""><span class="flaticon-frame"></span></a> 2400 sqft</li>
+                           <li><a href=""><span class="flaticon-bath"></span></a> {{a.nombre_douche}}</li>
+                           <li><a href=""><span class="flaticon-bed"></span></a> {{a.garage}}</li>
+                           <li><a href=""><span class="flaticon-frame"></span></a>{{a.superficie}} m2</li>
                            <li><a href=""><span class="ti-heart"></span></a> like</li>
                         </ul>
                      </div>
                   </div>
                </div>
+               {% endif %}
+               {% endfor %}
             </div>
          </div>
       </div>

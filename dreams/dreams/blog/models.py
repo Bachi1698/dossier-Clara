@@ -22,7 +22,7 @@ class Tag(models.Model):
     status = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name = 'Tag'
+        verbose_name = 'Tag' 
         verbose_name_plural = 'Tags'
 
     def __str__(self):

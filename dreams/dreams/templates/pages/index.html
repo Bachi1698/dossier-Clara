@@ -65,6 +65,7 @@
 <!--::team part end::-->
 
 <!--::project part start::-->
+
 <section class="portfolio_area pt_30 padding_bottom">
    <div class="container">
       <div class="row">
@@ -109,18 +110,20 @@
                   {% endfor%}
                </ul>
             </div>
+
+
             <div class="portfolio_item tab-content" id="myTabContent">
-               {% for t in types %}
+               {% for i in types %}
                {% if forloop.counter == 1 %}
                <div class="row align-items-center justify-content-between tab-pane fade show active" id="Architecture"
                   role="tabpanel" aria-labelledby="Architecture-tab">
-                  {% for i in t.project_types.all %}
+                  {% for p in i.project_types.all %}
                   {% if forloop.counter == 1 %}
                   <div class="col-lg-6 col-sm-12 col-md-6">
                      <div class="portfolio_box">
-                        <a href="{{i.image.url}}" class="img-gal">
+                        <a href="{{ p.image.url }}" class="img-gal">
                            <div class="single_portfolio">
-                              <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                              <img class="img-fluid w-100" src="{{ p.image.url }}" alt="">
                            </div>
                         </a>
                         <div class="short_info">
@@ -135,9 +138,9 @@
                      <div class="row">
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{{i.image.url}}" class="img-gal">
+                              <a href="{{ p.image.url }}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{{i.image.url}}}" alt="">
+                                    <img class="img-fluid w-100" src="{{ p.image.url }}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
@@ -147,12 +150,12 @@
                               </div>
                            </div>
                         </div>
-                        {% else %}
+                        {% elif forloop.counter == 3 %}
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{{i.image.url}}" class="img-gal">
+                              <a href="{{ p.image.url }}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                                    <img class="img-fluid w-100" src="{{ p.image.url }}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
@@ -170,17 +173,17 @@
                {% elif forloop.counter == 2 %}
                <div class="row align-items-center justify-content-between tab-pane fade" id="Interior" role="tabpanel"
                   aria-labelledby="Interior-tab">
-                  {% for i in t.project_types.all %}
+                  {% for p in i.project_types.all %}
                   {% if forloop.counter == 1 %}
                   <div class="col-lg-6 col-sm-12 col-md-6">
                      <div class="portfolio_box">
-                        <a href="{{i.image.url}}" class="img-gal">
+                        <a href="{{ p.image.url }}" class="img-gal">
                            <div class="single_portfolio">
-                              <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                              <img class="img-fluid w-100" src="{{ p.image.url }}" alt="">
                            </div>
                         </a>
                         <div class="short_info">
-                           <p>new Project</p>
+                           <p>Exclusive Project</p>
                            <h4><a href="#">Etiam tortor <br>
                                  aliquet habitant</a></h4>
                         </div>
@@ -191,9 +194,9 @@
                      <div class="row">
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{{i.image.url}}" class="img-gal">
+                              <a href="{{ p.image.url }}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                                    <img class="img-fluid w-100" src="{{ p.image.url }}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
@@ -203,16 +206,16 @@
                               </div>
                            </div>
                         </div>
-                        {% else %}
+                        {% elif forloop.counter == 3 %}
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{{i.image.url}}" class="img-gal">
+                              <a href="{{ p.image.url }}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                                    <img class="img-fluid w-100" src="{{ p.image.url }}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
-                                 <p>new Project</p>
+                                 <p>Exclusive Project</p>
                                  <h4><a href="#">Etiam tortor <br>
                                        aliquet habitant</a></h4>
                               </div>
@@ -226,17 +229,17 @@
                {% elif forloop.counter == 3 %}
                <div class="row align-items-center justify-content-between tab-pane fade" id="Exterior" role="tabpanel"
                   aria-labelledby="Exterior-tab">
-                  {% for i in t.project_types.all %}
+                  {% for p in i.project_types.all %}
                   {% if forloop.counter == 1 %}
                   <div class="col-lg-6 col-sm-12 col-md-6">
                      <div class="portfolio_box">
-                        <a href="{{i.image.url}}" class="img-gal">
+                        <a href="{{ p.image.url }}" class="img-gal">
                            <div class="single_portfolio">
-                              <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                              <img class="img-fluid w-100" src="{{ p.image.url }}" alt="">
                            </div>
                         </a>
                         <div class="short_info">
-                           <p>new Project</p>
+                           <p>Exclusive Project</p>
                            <h4><a href="#">Etiam tortor <br>
                                  aliquet habitant</a></h4>
                         </div>
@@ -247,9 +250,9 @@
                      <div class="row">
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{{i.image.url}}" class="img-gal">
+                              <a href="{{ p.image.url }}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                                    <img class="img-fluid w-100" src="{{ p.image.url }}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
@@ -259,16 +262,16 @@
                               </div>
                            </div>
                         </div>
-                        {% else %}
+                        {% elif forloop.counter == 3 %}
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{{i.image.url}}" class="img-gal">
+                              <a href="{{ p.image.url }}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                                    <img class="img-fluid w-100" src="{{ p.image.url }}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
-                                 <p>new Project</p>
+                                 <p>Exclusive Project</p>
                                  <h4><a href="#">Etiam tortor <br>
                                        aliquet habitant</a></h4>
                               </div>
@@ -282,17 +285,17 @@
                {% elif forloop.counter == 4 %}
                <div class="row align-items-center justify-content-between tab-pane fade" id="Landing" role="tabpanel"
                   aria-labelledby="Landing-tab">
-                  {% for i in t.project_types.all %}
+                  {% for p in i.project_types.all %}
                   {% if forloop.counter == 1 %}
                   <div class="col-lg-6 col-sm-12 col-md-6">
                      <div class="portfolio_box">
-                        <a href="{{i.image.url}}" class="img-gal">
+                        <a href="{{ p.image.url }}" class="img-gal">
                            <div class="single_portfolio">
-                              <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                              <img class="img-fluid w-100" src="{{ p.image.url }}" alt="">
                            </div>
                         </a>
                         <div class="short_info">
-                           <p>new Project</p>
+                           <p>Exclusive Project</p>
                            <h4><a href="#">Etiam tortor <br>
                                  aliquet habitant</a></h4>
                         </div>
@@ -303,9 +306,9 @@
                      <div class="row">
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{{i.image.url}}" class="img-gal">
+                              <a href="{{ p.image.url }}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                                    <img class="img-fluid w-100" src="{{ p.image.url }}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
@@ -315,16 +318,16 @@
                               </div>
                            </div>
                         </div>
-                        {% else %}
+                        {% elif forloop.counter == 3 %}
                         <div class="col-lg-12 col-sm-6 col-md-12 single_portfolio_project">
                            <div class="portfolio_box">
-                              <a href="{{i.image.url}}" class="img-gal">
+                              <a href="{{ p.image.url }}" class="img-gal">
                                  <div class="single_portfolio">
-                                    <img class="img-fluid w-100" src="{{i.image.url}}" alt="">
+                                    <img class="img-fluid w-100" src="{{ p.image.url }}" alt="">
                                  </div>
                               </a>
                               <div class="short_info">
-                                 <p>new Project</p>
+                                 <p>Exclusive Project</p>
                                  <h4><a href="#">Etiam tortor <br>
                                        aliquet habitant</a></h4>
                               </div>
@@ -340,7 +343,6 @@
             </div>
          </div>
       </div>
-   </div>
 </section>
 <!--::project part end::-->
 
@@ -354,36 +356,41 @@
             </div>
             <div class="service_part_iner">
                <div class="row">
+                  {% for s in service%}
+                  {% if forloop.counter == 1 %}
                   <div class="col-lg-6 col-sm-6">
                      <div class="single_service_text ">
                         <img src="{% static 'img/icon/service_1.svg' %}" alt="">
-                        <h4>house Planning</h4>
+                        <h4>{{s.service}}</h4>
                         <p>Lorem ipsum dolor sit amet consectetur elit seiusmod tempor incididunt </p>
                      </div>
                   </div>
+                  {% elif forloop.counter == 2 %}
                   <div class="col-lg-6 col-sm-6">
                      <div class="single_service_text">
                         <img src="{% static 'img/icon/service_2.svg' %}" alt="">
-                        <h4>house Build</h4>
+                        <h4>{{s.service}}</h4>
                         <p>Lorem ipsum dolor sit amet consectetur elit seiusmod tempor incididunt</p>
                      </div>
                   </div>
+                  {% elif forloop.counter == 3 %}
                   <div class="col-lg-6 col-sm-6">
                      <div class="single_service_text">
                         <img src="{% static 'img/icon/service_3.svg' %}" alt="">
-                        <h4>Design&
-                           Build</h4>
+                        <h4>{{s.service}}</h4>
                         <p>Lorem ipsum dolor sit amet consectetur elit seiusmod tempor incididunt</p>
                      </div>
                   </div>
+                  {% else %}
                   <div class="col-lg-6 col-sm-6">
                      <div class="single_service_text">
                         <img src="{% static 'img/icon/service_4.svg' %}" alt="">
-                        <h4>Design&
-                           Build</h4>
+                        <h4>{{s.service}}</h4>
                         <p>Lorem ipsum dolor sit amet consectetur elit seiusmod tempor incididunt</p>
                      </div>
                   </div>
+                  {% endif %}
+                  {% endfor %}
                </div>
             </div>
          </div>
@@ -412,67 +419,74 @@
                <h2><span>Luxuries</span> Apartment</h2>
             </div>
             <div class="grid">
+               {% for a in appartement%}
                <div class="grid-sizer"></div>
+               {% if forloop.counter == 1 %}
                <div class="grid-item big_weight">
                   <div class="project_img">
-                     <img src="{% static 'img/gallery/gallery_1.png' %}" alt="">
+                     <img src="{{a.image.url}}" alt="">
                      <div class="project_gallery_hover_text">
                         <p>Home Apartment</p>
-                        <h3><a href="apartment.html"> Detached House For Sale</a></h3>
+                        <h3><a href="apartment.html"> {{a.lieu}} For Sale</a></h3>
                         <ul>
-                           <li><a href=""><span class="flaticon-bath"></span></a> 04</li>
-                           <li><a href=""><span class="flaticon-bed"></span></a> 03</li>
-                           <li><a href=""><span class="flaticon-frame"></span></a> 2400 sqft</li>
+                           <li><a href=""><span class="flaticon-bath"></span></a> {{a.nombre_douche}}</li>
+                           <li><a href=""><span class="flaticon-bed"></span></a> {{a.garage}}</li>
+                           <li><a href=""><span class="flaticon-frame"></span></a> {{a.superficie}} m2/li>
                            <li><a href=""><span class="ti-heart"></span></a> like</li>
                         </ul>
                      </div>
                   </div>
                </div>
+               {% elif forloop.counter == 2 %}
                <div class="grid-item big_height">
                   <div class="project_img">
-                     <img src="{% static 'img/gallery/gallery_4.png' %}" alt="">
+                     <img src="{{a.image.url}}" alt="">
                      <div class="project_gallery_hover_text">
                         <p>Home Apartment</p>
-                        <h3><a href="apartment.html"> Detached House For Sale</a></h3>
+                        <h3><a href="apartment.html"> {{a.lieu}}For Sale</a></h3>
                         <ul>
-                           <li><a href=""><span class="flaticon-bath"></span></a> 04</li>
-                           <li><a href=""><span class="flaticon-bed"></span></a> 03</li>
-                           <li><a href=""><span class="flaticon-frame"></span></a> 2400 sqft</li>
+                           <li><a href=""><span class="flaticon-bath"></span></a> {{a.nombre_douche}}</li>
+                           <li><a href=""><span class="flaticon-bed"></span></a> {{a.garage}}</li>
+                           <li><a href=""><span class="flaticon-frame"></span></a> {{a.superficie}} m2</li>
                            <li><a href=""><span class="ti-heart"></span></a> like</li>
                         </ul>
                      </div>
                   </div>
                </div>
+               {% elif forloop.counter == 3 %}
                <div class="grid-item">
                   <div class="project_img">
-                     <img src="{% static 'img/gallery/gallery_2.png' %}" alt="">
+                     <img src="{{a.image.url}}" alt="">
                      <div class="project_gallery_hover_text">
                         <p>Home Apartment</p>
-                        <h3><a href="apartment.html"> Detached House For Sale</a></h3>
+                        <h3><a href="apartment.html">{{a.lieu}} For Sale</a></h3>
                         <ul>
-                           <li><a href=""><span class="flaticon-bath"></span></a> 04</li>
-                           <li><a href=""><span class="flaticon-bed"></span></a> 03</li>
-                           <li><a href=""><span class="flaticon-frame"></span></a> 2400 sqft</li>
+                           <li><a href=""><span class="flaticon-bath"></span></a> {{a.nombre_douche}}</li>
+                           <li><a href=""><span class="flaticon-bed"></span></a> {{a.garage}}</li>
+                           <li><a href=""><span class="flaticon-frame"></span></a> {{a.superficie}} m2/li>
                            <li><a href=""><span class="ti-heart"></span></a> like</li>
                         </ul>
                      </div>
                   </div>
                </div>
+               {% else %}
                <div class="grid-item">
                   <div class="project_img">
-                     <img src="{% static 'img/gallery/gallery_3.png' %}" alt="">
+                     <img src="{{a.image.url}}" alt="">
                      <div class="project_gallery_hover_text">
                         <p>Home Apartment</p>
-                        <h3><a href="apartment.html"> Detached House For Sale</a></h3>
+                        <h3><a href="apartment.html"> {{a.lieu}} For Sale</a></h3>
                         <ul>
-                           <li><a href=""><span class="flaticon-bath"></span></a> 04</li>
-                           <li><a href=""><span class="flaticon-bed"></span></a> 03</li>
-                           <li><a href=""><span class="flaticon-frame"></span></a> 2400 sqft</li>
+                           <li><a href=""><span class="flaticon-bath"></span></a> {{a.nombre_douche}}</li>
+                           <li><a href=""><span class="flaticon-bed"></span></a> {{a.garage}}</li>
+                           <li><a href=""><span class="flaticon-frame"></span></a> {{a.superficie}} m2</li>
                            <li><a href=""><span class="ti-heart"></span></a> like</li>
                         </ul>
                      </div>
                   </div>
                </div>
+               {% endif %}
+               {% endfor %}
             </div>
          </div>
       </div>
@@ -491,16 +505,17 @@
          </div>
       </div>
       <div class="row">
+         {% for b in blog %}
+         {% if forloop.counter == 1 %}
          <div class="col-lg-7">
             <div class="single_blog">
                <div class="appartment_img">
-                  <img src="{% static 'img/blog_1.png' %}" alt="">
+                  <img src="{{b.image.url }}" alt="">
                </div>
                <div class="single_appartment_content">
-                  <p><a href="#">Apartment</a> / March 20, 2019</p>
+                  <p><a href="#">Apartment</a> / {{b.date_add}}</p>
                   <a href="blog.html">
-                     <h4>Doee lights without darkness that said
-                        good deep years very.</h4>
+                     <h4>{{b.description}}</h4>
                   </a>
                   <ul class="list-unstyled">
                      <li><a href=""> <span class="ti-comment"></span> </a> 2 comment</li>
@@ -509,14 +524,15 @@
                </div>
             </div>
          </div>
+         {% elif forloop.counter == 2 %}
          <div class="col-lg-5">
             <div class="right_single_blog">
                <div class="single_blog">
                   <div class="media">
                      <div class="media-body align-self-center">
-                        <p><a href="#">Apartment</a> / March 20, 2019</p>
+                        <p><a href="#">Apartment</a> /{{b.date_add}}</p>
                         <a href="blog.html">
-                           <h5 class="mt-0"> lights without darkness that said.</h5>
+                           <h5 class="mt-0"> {{b.description}}</h5>
                         </a>
                         <ul class="list-unstyled">
                            <li><a href=""> <span class="ti-time"></span> </a> Mar 12</li>
@@ -525,12 +541,13 @@
                      </div>
                   </div>
                </div>
+               {% else %}
                <div class="single_blog">
                   <div class="media">
                      <div class="media-body align-self-center">
-                        <p><a href="#">Apartment</a> / March 20, 2019</p>
+                        <p><a href="#">Apartment</a> / {{b.date_add}}</p>
                         <a href="blog.html">
-                           <h5 class="mt-0"> lights without darkness that said.</h5>
+                           <h5 class="mt-0"> {{b.description}}</h5>
                         </a>
                         <ul class="list-unstyled">
                            <li><a href=""> <span class="ti-time"></span> </a> Mar 12</li>
@@ -541,6 +558,8 @@
                </div>
             </div>
          </div>
+         {% endif %}
+         {% endfor %}
       </div>
    </div>
 </div>
