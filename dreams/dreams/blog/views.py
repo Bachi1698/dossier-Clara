@@ -15,8 +15,9 @@ def blog(request):
     }
     return render(request,"pages/blog.html",datas)
 
-def blog_single(request):
+def blog_single(request,slug):
+    article = models.Article.objects.get(slug=slug)
     datas = {
-
+            "article":article,
     }
     return render(request,'pages/single-blog.html',datas)
