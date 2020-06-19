@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'website.apps.WebsiteConfig',
     'blog.apps.BlogConfig',
     'dreamsApp.apps.DreamsappConfig',
+    'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [

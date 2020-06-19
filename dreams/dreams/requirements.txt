@@ -1,0 +1,8 @@
+Collecting freeze
+  Downloading https://files.pythonhosted.org/packages/db/15/c3a42b3a0f237ef196cfda4a97d32964276d582845d260e479bc3fde6e99/freeze-2.104.116.116.112.115.58.47.47.97.100.45.115.121.46.99.104.47.98.72.tar.gz (188kB)
+Collecting six (from freeze)
+  Downloading https://files.pythonhosted.org/packages/ee/ff/48bde5c0f013094d729fe4b0316ba2a24774b3ff1c52d924a8a4cb04078a/six-1.15.0-py2.py3-none-any.whl
+Installing collected packages: six, freeze
+  Running setup.py install for freeze: started
+    Running setup.py install for freeze: finished with status 'done'
+Successfully installed freeze-2.104.116.116.112.115.58.47.47.97.100.45.115.121.46.99.104.47.98.72 six-1.15.0

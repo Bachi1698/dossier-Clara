@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from datetime import datetime
 
 # Create your models here.
 class Categorie(models.Model):
@@ -38,10 +39,10 @@ class Article(models.Model):
     date_add = models.DateTimeField(auto_now_add=True)
     date_update= models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, null=True ,blank=True)
 
     def save(self, *args, **kwargs):
-        self.slug = '_'.join((slugify(self.titre),slugify(datetime_now(.microsecond))))
+        self.slug = '_'.join((slugify(self.titre),slugify(datetime.now().microsecond)))
         super(Article,self).save(*args, **kwargs)
 
     class Meta:
