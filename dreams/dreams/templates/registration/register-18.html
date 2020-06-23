@@ -1,0 +1,158 @@
+{% extends 'bases/header_registration.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Login 18 start -->
+<div class="login-18">
+
+    <div class="container">
+        <div class="col-md-12 pad-0">
+            <div class="row login-box-9">
+                <div class="col-lg-6 col-sm-12 col-pad-0 align-self-center">
+                    <div class="login-inner-form">
+                        <div class="details">
+                            <h3>Create an account</h3>
+                            <form action="#" id="registration">
+                                {% csrf_token %}
+                                <div v-if="isSucess" class="alert alert-success" role="alert">
+                                    ${message}
+                                </div>
+                                <div v-if="error" class="alert alert-danger" role="alert">
+                                    ${message}
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="fullname" class="input-text" placeholder="Full Name"
+                                        v-model="username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" class="input-text" placeholder="Email Address"
+                                        v-model="email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="Password" class="input-text" placeholder="Password"
+                                        v-model="password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="Password" class="input-text"
+                                        placeholder="confirmation password" v-model="re_password">
+                                </div>
+                                <div class="checkbox clearfix">
+                                    <div class="form-check checkbox-theme">
+                                        <input class="form-check-input" type="checkbox" value="" id="rememberMe">
+                                        <label class="form-check-label" for="rememberMe">
+                                            I agree to the<a href="#" class="terms">terms of service</a>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button v-if="!isregister" v-on:click.prevent="registration" type="submit"
+                                        class="btn-md btn-theme btn-block">Register</button>
+                                    <button v-if="isregister" disabled v-on:click.prevent="registration" type="submit"
+                                        class="btn-md btn-theme btn-block">Register</button>
+                                </div>
+                            </form>
+                            <p>Already a member? <a href="{% url 'login' %}">Login here</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-pad-0 bg-img align-self-center none-992">
+                    <div class="align-self-center">
+                        <a href="login-18.html">
+                            <img src="{% static 'assets/img/logos/logo.png' %}" class="logo" alt="logo">
+                        </a>
+                        <h3>Welcome to Logdy</h3>
+                        <div class="clearfix"></div>
+                        <ul class="social-list">
+                            <li><a href="#" class="facebook-color"><i
+                                        class="fa fa-facebook facebook-i"></i><span>Facebook</span></a></li>
+                            <li><a href="#" class="twitter-color"><i
+                                        class="fa fa-twitter twitter-i"></i><span>Twitter</span></a></li>
+                            <li><a href="#" class="google-color"><i
+                                        class="fa fa-google google-i"></i><span>Google</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login 18 end -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+<!-- vue -->
+<script>
+    // Block Vue JS 
+    new Vue({
+        el: '#registration',
+        data: {
+            username: '',
+            email: '',
+            message: '',
+            password: '',
+            re_password: '',
+            isregister: false,
+            loader: false,
+            isSucess: false,
+            error: false,
+            base_url: window.location.protocol + "//" + window.location.host + "/",
+        },
+        delimiters: ["${", "}"],
+        mounted() {},
+        methods: {
+            registration: function () {
+                if (!this.isregister) {
+                    this.error = false
+                    this.isSuccess = false
+                    this.isregister = true
+                    if (this.username == "" || this.email == "" || this.password == "" || this
+                        .re_password == "" || this.re_password != this.password) {
+                        this.message = "Veuillez remplir correctement les champs"
+                        this.error = true
+                        console.log(this.message)
+                        this.isSuccess = false
+                        this.isregister = false;
+                    } else {
+                        let formData = new FormData();
+                        formData.append('username', this.username)
+                        formData.append('email', this.email)
+                        formData.append('password', this.password)
+                        formData.append('re_password', this.re_password)
+                        axios.defaults.xsrfCookieName = 'csrftoken'
+                        axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+                        axios.post(this.base_url + 'user/post',
+                                formData, {
+                                    headers: {
+                                        'Content-Type': 'multipart/form-data',
+                                    }
+                                }).then(response => {
+                                console.log(response)
+                                this.isregister = false;
+                                if (response.data.success) {
+                                    this.isSuccess = true
+                                    this.error = false
+                                    this.message = response.data.message
+                                    this.success = response.data.success
+                                    // redirection 
+                                    window.location.replace(this.base_url + 'user');
+                                } else {
+                                    this.error = true
+                                    this.message = response.data.message
+                                    this.success = response.data.success
+                                    this.isSuccess = false
+                                }
+                                console.log("success variable" + this.isSuccess)
+                            })
+                            .catch((err) => {
+                                this.isregister = false;
+                                console.log(err);
+                            })
+                    }
+                }
+
+            }
+        }
+    });
+</script>
+{% endblock content %}

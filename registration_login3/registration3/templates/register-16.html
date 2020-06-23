@@ -1,0 +1,213 @@
+{% extends "bases/header.html"%}
+{% load static %}
+{% block content %}
+
+<!-- Login 16 start -->
+<div class="login-16">
+    <div class="container">
+        <div class="row login-box">
+            <div class="col-lg-5 col-md-12 bg-img none-992 col-pad-0 align-self-center">
+                <div class="info">
+                    <div class="logo clearfix">
+                        <a href="login-16.html">
+                            <img src="{% static 'assets/img/logos/logo.png' %}" alt="logo">
+                        </a>
+                    </div>
+                    <div class="btn-section clearfix">
+                        <a href="{% url 'login' %}" class="link-btn active btn-1">Login</a>
+                        <div class="clearfix"></div>
+                        <a href="{% url 'register' %}" class="link-btn btn-1 default-bg">Register</a>
+                    </div>
+                    <ul class="social-list">
+                        <li>
+                            <a href="#" class="facebook-bg">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="twitter-bg">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="google-bg">
+                                <i class="fa fa-google"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="linkedin-bg">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="pinterest-bg">
+                                <i class="fa fa-pinterest"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-12 bg-color-15 align-self-center bg-color-8">
+                <div class="form-section">
+                    <div class="logo-2 clearfix">
+                        <a href="login-16.html">
+                            <img src="{% static 'assets/img/logos/logo-2.png' %}" alt="logo">
+                        </a>
+                    </div>
+                    <h3>Create an account</h3>
+                    <div class="login-inner-form">
+                        <form action="#" id="registration">
+                            {% csrf_token %}
+                            <div v-if="isSuccess" class="alert alert-success" role="alert">
+                                ${message}
+                            </div>
+                            <div v-if="error" class="alert alert-danger" role="alert">
+                                ${message}
+                            </div>
+                            <div class="form-group form-box">
+                                <input type="text" name="fullname" class="input-text" placeholder="Full Name"
+                                    v-model="username">
+                                <i class="flaticon-user"></i>
+                            </div>
+                            <div class="form-group form-box">
+                                <input type="email" name="email" class="input-text" placeholder="Email Address"
+                                    v-model="email">
+                                <i class="flaticon-mail-2"></i>
+                            </div>
+                            <div class="form-group form-box">
+                                <input type="password" name="Password" class="input-text" placeholder="Password"
+                                    v-model="password">
+                                <i class="flaticon-password"></i>
+                            </div>
+                            <div class="form-group form-box">
+                                <input type="password" name="Password" class="input-text"
+                                    placeholder="confirmation password" v-model="re_password">
+                                <i class="flaticon-password"></i>
+                            </div>
+                            <div class="checkbox clearfix">
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">
+                                        I agree to the <a href="#">terms of service</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group mb-0">
+                                <button v-if="!isregister" v-on:click.prevent="registration" type=" submit"
+                                    class="btn-md btn-theme btn-block">Register</button>
+                                <button v-if="isregister" disabled v-on:click.prevent="registration" type=" submit"
+                                    class="btn-md btn-theme btn-block">Register</button>
+                            </div>
+                            <p class="text">Already a member?<a href="login-16.html"> Login here</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login 16 end -->
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+<script>
+    // Block Vue JS  
+    new Vue({
+
+        // id de la section ou vue js aura effet
+        el: '#registration',
+        // end 
+
+        // varaible en rapport au v-model et variable permettant de traiter les erreurs
+        data: {
+            username: '',
+            password: '',
+            email: '',
+            re_password: '',
+            message: '',
+            isregister: false,
+            loader: false,
+            isSuccess: false,
+            error: false,
+            base_url: window.location.protocol + "//" + window.location.host + "/",
+        },
+        //end 
+        delimiters: ["${", "}"],
+
+        // code à exécuter au chargement de la page (fonction,changement de variable...)
+        mounted() {},
+
+        // les différentes fonctions 
+        methods: {
+            registration: function () {
+
+                // vérification des données 
+                if (!this.isregister) {
+                    this.error = false
+                    this.isSuccess = false
+                    this.isregister = true
+                    if (this.username == "" || this.email == "" || this.password == "" || this
+                        .re_password == "" || this.re_password != this.password) {
+                        this.message = "Veuillez remplir correctement les champs";
+                        this.error = true
+                        this.isSuccess = false
+                        this.isregister = false;
+                    } else {
+                        //    permet d'imploder des fichiers
+
+                        // stocker les données 
+                        let formData = new FormData();
+                        formData.append('username', this.username);
+                        formData.append('email', this.email);
+                        formData.append('password', this.password);
+                        formData.append('re_password', this.re_password);
+
+                        // post des données vers le back-end 
+                        axios.defaults.xsrfCookieName = 'csrftoken'
+                        axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+                        axios.post(this.base_url + 'is_inscription',
+                                formData, {
+                                    headers: {
+                                        'Content-Type': 'multipart/form-data',
+                                    }
+
+                                    // traitement sur les reponses 
+                                }).then(response => {
+                                console.log(response)
+                                this.isregister = false;
+
+
+                                // si tout s'est bien passé 
+                                if (response.data.success) {
+
+                                    // permet d'afficher un message à l'ecran 
+                                    this.isSuccess = true
+                                    this.error = false
+                                    this.message = response.data.message
+                                    this.success = response.data.success
+                                    // redirection 
+                                    window.location.replace(this.base_url);
+
+                                    // en cas d'erreur 
+                                } else {
+                                    this.error = true
+                                    this.message = response.data.message
+                                    this.success = response.data.success
+                                    this.isSuccess = false
+                                }
+                                console.log("success variable" + this.isSuccess)
+                                // console.log("success variable"+this.error)
+                            })
+                            .catch((err) => {
+                                this.isregister = false;
+                                console.log(err);
+                            })
+                    }
+                }
+            },
+
+        }
+    });
+</script>
+< {% endblock content %}

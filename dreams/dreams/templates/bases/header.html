@@ -74,8 +74,17 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'contact' %}">Contact us</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'inscription' %}">login</a>
+
+                                <li class="nav-item dropdown">
+                                    {% if user.is_authenticated %}
+                                    <a href="{% url 'is_logout' %}" class="login-btn"><i class="fa fa-sign-out"
+                                            style="margin-top:54px;"></i>{{user.username}}</a>
+                                    <!-- <p style="text-transform: capitalize" ></p> -->
+                                    {% else %}
+                                    <a href="{% url 'login' %}" class="login-btn"><i class="fa fa-user"
+                                            style="margin-top:52px"></i>login</a>
+                                    {% endif %}
+
                                 </li>
                             </ul>
                         </div>
